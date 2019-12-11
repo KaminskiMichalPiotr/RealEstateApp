@@ -7,6 +7,7 @@ import com.kaminski.realestateapp.realestate.RealEstateType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -25,6 +26,7 @@ public class PlotREST {
     private AnnouncementService announcementService;
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('WORKER')")
     public ResponseEntity<?> getPlotById(@PathVariable Long id) {
         Optional<Plot> plot = plotService.findPlotById(id);
         if (plot.isPresent()) {
@@ -36,7 +38,10 @@ public class PlotREST {
 
     @PostMapping("")
     public ResponseEntity<Plot> createPlot(@RequestBody Plot plot) {
-        if (plotService.findPlotById(plot.getId()).isPresent()) {
+        if(plot.getId() == null){
+            plot = plotService.savePlot(plot);
+        }
+        else if (plotService.findPlotById(plot.getId()).isPresent()) {
             plot = plotService.updatePlot(plot);
         } else {
             plot.setId(null);

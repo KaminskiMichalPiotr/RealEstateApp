@@ -26,17 +26,6 @@ public class AddressREST {
         }
     }
 
-    @PostMapping("")
-    public ResponseEntity<Address> createAnnouncement(@RequestBody Address address) {
-        if (addressService.findAddressById(address.getId()).isPresent()) {
-            address = addressService.updateAddress(address);
-        } else {
-            address.setId(null);
-            address = addressService.saveAddress(address);
-        }
-        return ResponseEntity.ok().body(address);
-    }
-
     @GetMapping("")
     public ResponseEntity<List<Address>> getAnnouncements() {
         List<Address> addresses = addressService.getAddresses();
