@@ -12,15 +12,15 @@ public class FlatService {
     @Autowired
     private FlatRepo flatRepo;
 
-    public Optional<Flat> findFlatById(Long id){
+    public Optional<Flat> findFlatById(Long id) {
         return flatRepo.findById(id);
     }
 
-    public List<Flat> getFlats(){
+    public List<Flat> getFlats() {
         return flatRepo.findAll();
     }
 
-    public Flat updateFlat(Flat flat){
+    public Flat updateFlat(Flat flat) {
         return flatRepo.save(flat);
     }
 

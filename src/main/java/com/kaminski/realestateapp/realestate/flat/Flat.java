@@ -1,5 +1,6 @@
 package com.kaminski.realestateapp.realestate.flat;
 
+import com.kaminski.realestateapp.address.Address;
 import com.kaminski.realestateapp.realestate.RealEstate;
 import com.kaminski.realestateapp.realestate.RealEstateType;
 import lombok.Getter;
@@ -16,17 +17,27 @@ import javax.persistence.Entity;
 @Entity
 public class Flat extends RealEstate {
 
-    @Column
-    Boolean pcvWindows;
+    public Flat(Long id, Long area, Long price, Long pricePerSquareMeter, String thumbnailPath, Address address,
+                RealEstateType realEstateType, Boolean pcvWindows, Boolean urbanHeating, Integer floorNumber,
+                Integer numberOfRooms) {
+        super(id, area, price, pricePerSquareMeter, thumbnailPath, address, realEstateType);
+        this.pcvWindows = pcvWindows;
+        this.urbanHeating = urbanHeating;
+        this.floorNumber = floorNumber;
+        this.numberOfRooms = numberOfRooms;
+    }
 
     @Column
-    Boolean urbanHeating;
+    private Boolean pcvWindows;
 
     @Column
-    Integer floor;
+    private Boolean urbanHeating;
 
     @Column
-    Integer numberOfRooms;
+    private Integer floorNumber;
+
+    @Column
+    private Integer numberOfRooms;
 
     @Override
     public void setRealEstateType(RealEstateType realEstateType) {

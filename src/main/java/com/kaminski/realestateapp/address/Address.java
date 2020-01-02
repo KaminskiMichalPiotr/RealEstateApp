@@ -28,7 +28,7 @@ public class Address {
     @Column
     private String district;
 
-    @OneToMany(mappedBy = "address")
+    @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
     List<RealEstate> realEstates;
 
     public Address(String country, String city, String district) {

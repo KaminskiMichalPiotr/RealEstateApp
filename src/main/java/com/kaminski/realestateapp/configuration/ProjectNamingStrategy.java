@@ -31,16 +31,15 @@ public class ProjectNamingStrategy implements PhysicalNamingStrategy {
         return toSnakeCase(identifier);
     }
 
-    private Identifier toSnakeCase(Identifier identifier){
-        if(identifier != null){
+    private Identifier toSnakeCase(Identifier identifier) {
+        if (identifier != null) {
             final String regex = "([a-z])([A-Z])";
             final String replacement = "$1_$2";
             final String snakeCase = identifier.getText()
                     .replaceAll(regex, replacement)
                     .toLowerCase();
             return Identifier.toIdentifier(snakeCase);
-        }
-        else{
+        } else {
             return null;
         }
     }

@@ -12,15 +12,15 @@ public class BusinessEstablishmentService {
     @Autowired
     private BusinessEstablishmentRepo businessEstablishmentRepo;
 
-    public Optional<BusinessEstablishment> findFlatById(Long id){
+    public Optional<BusinessEstablishment> findFlatById(Long id) {
         return businessEstablishmentRepo.findById(id);
     }
 
-    public List<BusinessEstablishment> getFlats(){
+    public List<BusinessEstablishment> getFlats() {
         return businessEstablishmentRepo.findAll();
     }
 
-    public BusinessEstablishment updateFlat(BusinessEstablishment businessEstablishment){
+    public BusinessEstablishment updateFlat(BusinessEstablishment businessEstablishment) {
         return businessEstablishmentRepo.save(businessEstablishment);
     }
 

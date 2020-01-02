@@ -40,8 +40,5 @@ public class User {
     @Column
     private Boolean standardUser;
 
-    @OneToMany(mappedBy = "createdBy")
-    private List<Announcement> announcements;
-
 
 }

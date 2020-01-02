@@ -6,9 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,8 +27,13 @@ public class Announcement {
     @Column
     private Date announcementDate;
 
-    @ManyToOne
-    private User createdBy;
+    @Column
+    @Type(type="text")
+    private String description;
+
+    @Column
+    @ElementCollection
+    private List<String> picturesPaths;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "realEstate_id", referencedColumnName = "id")

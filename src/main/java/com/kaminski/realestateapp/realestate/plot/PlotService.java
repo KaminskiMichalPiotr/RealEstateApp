@@ -10,21 +10,21 @@ import java.util.Optional;
 public class PlotService {
 
     @Autowired
-    private PlotRepository plotRepository;
+    private PlotRepo plotRepo;
 
-    public Optional<Plot> findPlotById(Long id){
-        return plotRepository.findById(id);
+    public Optional<Plot> findPlotById(Long id) {
+        return plotRepo.findById(id);
     }
 
-    public List<Plot> getPlots(){
-        return plotRepository.findAll();
+    public List<Plot> getPlots() {
+        return plotRepo.findAll();
     }
 
-    public Plot updatePlot(Plot plot){
-        return plotRepository.save(plot);
+    public Plot updatePlot(Plot plot) {
+        return plotRepo.save(plot);
     }
 
     public Plot savePlot(Plot plot) {
-        return plotRepository.save(plot);
+        return plotRepo.save(plot);
     }
 }

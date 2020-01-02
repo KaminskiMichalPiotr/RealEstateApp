@@ -1,7 +1,6 @@
 package com.kaminski.realestateapp.realestate.plot;
 
 import com.kaminski.realestateapp.address.Address;
-import com.kaminski.realestateapp.announcement.Announcement;
 import com.kaminski.realestateapp.realestate.RealEstate;
 import com.kaminski.realestateapp.realestate.RealEstateType;
 import lombok.AllArgsConstructor;
@@ -19,9 +18,9 @@ import javax.persistence.Entity;
 @Entity
 public class Plot extends RealEstate {
 
-    public Plot(Long id, Long area, Long price, Long pricePerSquareMeter, Address address, RealEstateType realEstateType,
+    public Plot(Long id, Long area, Long price, Long pricePerSquareMeter, String thumbnailPath, Address address, RealEstateType realEstateType,
                 boolean isWaterAvailable, boolean isGasAvailable, boolean isEnergyAvailable, PlotType plotType) {
-        super(id, area, price, pricePerSquareMeter, address, realEstateType);
+        super(id, area, price, pricePerSquareMeter, thumbnailPath, address, realEstateType);
         this.isWaterAvailable = isWaterAvailable;
         this.isGasAvailable = isGasAvailable;
         this.isEnergyAvailable = isEnergyAvailable;

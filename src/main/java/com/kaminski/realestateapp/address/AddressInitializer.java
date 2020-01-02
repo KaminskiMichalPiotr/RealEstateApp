@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,18 +19,18 @@ public class AddressInitializer {
     private AddressRepo addressRepo;
 
     @PostConstruct
-    private void loadAddresses(){
+    public void loadAddresses() {
         JSONParser jsonParser = new JSONParser();
-
-        try (FileReader reader = new FileReader("C:\\Users\\TheRudno\\Desktop\\realestate\\src\\main\\resources\\pl.json"))
-        {
+        try {
+            InputStream is = getClass().getResourceAsStream("/pl.json");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             Object obj = jsonParser.parse(reader);
 
             JSONArray addresses = (JSONArray) obj;
             List<Address> addressList = new ArrayList<>();
             //Iterate over employee array
-            addresses.forEach( address -> addressList.add(parseAddressObject( (JSONObject) address )));
-            if(addressRepo.findAll().size()< addressList.size()){
+            addresses.forEach(address -> addressList.add(parseAddressObject((JSONObject) address)));
+            if (addressRepo.findAll().size() < addressList.size()) {
                 addressRepo.deleteAll();
                 addressRepo.saveAll(addressList);
             }
@@ -43,16 +41,13 @@ public class AddressInitializer {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-
     }
 
     private Address parseAddressObject(JSONObject address) {
-
         String country = (String) address.get("country");
-        String city= (String) address.get("city");
+        String city = (String) address.get("city");
         String district = (String) address.get("admin");
-        return new Address(country,city,district);
+        return new Address(country, city, district);
     }
 
 

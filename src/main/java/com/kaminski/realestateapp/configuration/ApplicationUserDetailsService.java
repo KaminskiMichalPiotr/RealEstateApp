@@ -24,15 +24,15 @@ public class ApplicationUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User user = userRepo.findByLogin(s);
 
-        if(user == null) {
+        if (user == null) {
             throw new UsernameNotFoundException(String.format("The username %s doesn't exist", s));
         }
 
         List<GrantedAuthority> authorities = new ArrayList<>();
-        if(user.getAdmin()) {
+        if (user.getAdmin()) {
             authorities.add(new SimpleGrantedAuthority(Role.ADMIN.toString()));
         }
-        if(user.getStandardUser()){
+        if (user.getStandardUser()) {
             authorities.add(new SimpleGrantedAuthority(Role.WORKER.toString()));
         }
 

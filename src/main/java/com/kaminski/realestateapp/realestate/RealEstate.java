@@ -1,7 +1,13 @@
 package com.kaminski.realestateapp.realestate;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.kaminski.realestateapp.address.Address;
-import com.kaminski.realestateapp.announcement.Announcement;
+import com.kaminski.realestateapp.realestate.businessestablishment.BusinessEstablishment;
+import com.kaminski.realestateapp.realestate.businessestablishment.BusinessEstablishmentService;
+import com.kaminski.realestateapp.realestate.flat.Flat;
+import com.kaminski.realestateapp.realestate.house.House;
+import com.kaminski.realestateapp.realestate.plot.Plot;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +21,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "realEstateType")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Plot.class, name = "PLOT"),
+        @JsonSubTypes.Type(value = House.class, name = "HOUSE"),
+        @JsonSubTypes.Type(value = Flat.class, name = "FLAT"),
+        @JsonSubTypes.Type(value = BusinessEstablishment.class, name = "BUSINESS_ESTABLISHMENT")
+})
 public abstract class RealEstate {
 
     @Id
@@ -31,13 +44,20 @@ public abstract class RealEstate {
     @Column
     private Long pricePerSquareMeter;
 
+    @Column
+    private String thumbnailPath;
+
     @ManyToOne
+    @JoinColumn
     private Address address;
 
     @Column
     RealEstateType realEstateType;
 
-//    @OneToOne(mappedBy = "realEstate")
-//    Announcement announcement;
-
+    public void setPricePerSquareMeter() {
+        if(area != null && price != null){
+            this.pricePerSquareMeter = price/area;
+            return;
+        }
+    }
 }

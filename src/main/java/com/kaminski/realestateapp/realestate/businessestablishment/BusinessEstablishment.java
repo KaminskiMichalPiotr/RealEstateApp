@@ -1,5 +1,6 @@
 package com.kaminski.realestateapp.realestate.businessestablishment;
 
+import com.kaminski.realestateapp.address.Address;
 import com.kaminski.realestateapp.realestate.RealEstate;
 import com.kaminski.realestateapp.realestate.RealEstateType;
 import lombok.Getter;
@@ -16,8 +17,14 @@ import javax.persistence.Entity;
 @Entity
 public class BusinessEstablishment extends RealEstate {
 
+    public BusinessEstablishment(Long id, Long area, Long price, Long pricePerSquareMeter, String thumbnailPath,
+                                 Address address, RealEstateType realEstateType, BusinessEstablishmentType businessEstablishmentType) {
+        super(id, area, price, pricePerSquareMeter, thumbnailPath, address, realEstateType);
+        this.businessEstablishmentType = businessEstablishmentType;
+    }
+
     @Column
-    BusinessEstablishmentType  businessEstablishmentType;
+    private BusinessEstablishmentType businessEstablishmentType;
 
     @Override
     public void setRealEstateType(RealEstateType realEstateType) {
