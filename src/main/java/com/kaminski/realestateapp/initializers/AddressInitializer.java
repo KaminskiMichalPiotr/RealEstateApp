@@ -1,5 +1,7 @@
-package com.kaminski.realestateapp.address;
+package com.kaminski.realestateapp.initializers;
 
+import com.kaminski.realestateapp.address.Address;
+import com.kaminski.realestateapp.address.AddressRepo;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;

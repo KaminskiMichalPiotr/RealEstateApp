@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.kaminski.realestateapp.address.Address;
 import com.kaminski.realestateapp.realestate.businessestablishment.BusinessEstablishment;
-import com.kaminski.realestateapp.realestate.businessestablishment.BusinessEstablishmentService;
 import com.kaminski.realestateapp.realestate.flat.Flat;
 import com.kaminski.realestateapp.realestate.house.House;
 import com.kaminski.realestateapp.realestate.plot.Plot;
@@ -48,15 +47,15 @@ public abstract class RealEstate {
     private String thumbnailPath;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(nullable = false)
     private Address address;
 
     @Column
     RealEstateType realEstateType;
 
     public void setPricePerSquareMeter() {
-        if(area != null && price != null){
-            this.pricePerSquareMeter = price/area;
+        if (area != null && price != null) {
+            this.pricePerSquareMeter = price / area;
             return;
         }
     }

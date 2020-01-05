@@ -23,7 +23,7 @@ public class UserDTO {
 
     private Boolean standardUser;
 
-    public static UserDTO adaptFrom(User user){
-        return new UserDTO(user.getId(), user.getLogin(), user.getName(), user.getSurname(), user.getAdmin(),user.getStandardUser());
+    public static UserDTO adaptFrom(User user) {
+        return new UserDTO(user.getId(), user.getLogin(), user.getName(), user.getSurname(), user.getAdmin(), user.getStandardUser());
     }
 }

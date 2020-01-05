@@ -1,7 +1,6 @@
-package com.kaminski.realestateapp;
+package com.kaminski.realestateapp.initializers;
 
 import com.kaminski.realestateapp.address.Address;
-import com.kaminski.realestateapp.address.AddressInitializer;
 import com.kaminski.realestateapp.address.AddressRepo;
 import com.kaminski.realestateapp.announcement.Announcement;
 import com.kaminski.realestateapp.announcement.AnnouncementRepo;

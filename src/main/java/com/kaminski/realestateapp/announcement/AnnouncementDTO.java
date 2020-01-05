@@ -21,7 +21,7 @@ public class AnnouncementDTO {
     private List<String> picturesPaths;
     private RealEstateDTO realEstate;
 
-    public static AnnouncementDTO adaptFrom(Announcement announcement){
+    public static AnnouncementDTO adaptFrom(Announcement announcement) {
         return new AnnouncementDTO(announcement.getId(), announcement.getAnnouncementDate(), announcement.getDescription(),
                 announcement.getPicturesPaths(), RealEstateDTO.adaptFrom(announcement.getRealEstate()));
     }

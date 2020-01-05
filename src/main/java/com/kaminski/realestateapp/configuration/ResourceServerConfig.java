@@ -40,7 +40,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                         "/plot",
                         "/business-establishment")
                 .permitAll()
-                .antMatchers(HttpMethod.PUT,  "/real-estate/search")
+                .antMatchers(HttpMethod.PUT, "/real-estate/search")
                 .permitAll()
                 .antMatchers(HttpMethod.POST, "/**")
                 .authenticated()

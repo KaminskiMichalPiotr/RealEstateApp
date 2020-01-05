@@ -1,7 +1,6 @@
 package com.kaminski.realestateapp.announcement;
 
 import com.kaminski.realestateapp.realestate.RealEstate;
-import com.kaminski.realestateapp.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,7 +27,7 @@ public class Announcement {
     private Date announcementDate;
 
     @Column
-    @Type(type="text")
+    @Type(type = "text")
     private String description;
 
     @Column
@@ -36,7 +35,7 @@ public class Announcement {
     private List<String> picturesPaths;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "realEstate_id", referencedColumnName = "id")
+    @JoinColumn(name = "realEstate_id", referencedColumnName = "id", nullable = false)
     private RealEstate realEstate;
 
 }

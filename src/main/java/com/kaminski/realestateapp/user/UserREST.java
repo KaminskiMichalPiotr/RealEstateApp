@@ -4,12 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.websocket.server.PathParam;
 import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,14 +39,14 @@ public class UserREST {
 
     @GetMapping("")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<List<UserDTO>> getUsers(){
+    public ResponseEntity<List<UserDTO>> getUsers() {
         List<UserDTO> userDTOS = userRepo.findAll().stream().map(UserDTO::adaptFrom).collect(Collectors.toList());
         return ResponseEntity.ok().body(userDTOS);
     }
 
     @PostMapping("")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<?> saveUser(@RequestBody User user){
+    public ResponseEntity<?> saveUser(@RequestBody User user) {
         User saved = null;
         try {
             saved = userService.saveUser(user);
@@ -60,8 +58,8 @@ public class UserREST {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<?> deleteUser(@PathVariable("id") Long id){
-        if(userRepo.findById(id).isPresent()){
+    public ResponseEntity<?> deleteUser(@PathVariable("id") Long id) {
+        if (userRepo.findById(id).isPresent()) {
             userRepo.deleteById(id);
             return ResponseEntity.accepted().build();
         }

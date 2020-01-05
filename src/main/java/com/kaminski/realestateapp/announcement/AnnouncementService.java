@@ -1,6 +1,11 @@
 package com.kaminski.realestateapp.announcement;
 
 import com.kaminski.realestateapp.realestate.RealEstate;
+import com.kaminski.realestateapp.realestate.RealEstateDTO;
+import com.kaminski.realestateapp.realestate.businessestablishment.BusinessEstablishmentDTO;
+import com.kaminski.realestateapp.realestate.flat.FlatDTO;
+import com.kaminski.realestateapp.realestate.house.HouseDTO;
+import com.kaminski.realestateapp.realestate.plot.PlotDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,5 +40,18 @@ public class AnnouncementService {
 
     public void delete(Announcement announcement) {
         announcementRepo.delete(announcement);
+    }
+
+    public RealEstate mapToRealEstate(RealEstateDTO realEstate) {
+        if(realEstate instanceof HouseDTO){
+            return HouseDTO.adaptTo((HouseDTO) realEstate);
+        }else if(realEstate instanceof FlatDTO){
+            return FlatDTO.adaptTo((FlatDTO) realEstate);
+        }else if(realEstate instanceof PlotDTO){
+            return PlotDTO.adaptTo((PlotDTO) realEstate);
+        }else if(realEstate instanceof BusinessEstablishmentDTO){
+            return BusinessEstablishmentDTO.adaptTo((BusinessEstablishmentDTO) realEstate);
+        }
+        return null;
     }
 }

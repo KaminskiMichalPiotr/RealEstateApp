@@ -16,8 +16,12 @@ public class AddressDTO {
     private String city;
     private String district;
 
-    public static AddressDTO adaptFrom(Address address){
-        return new AddressDTO(address.getId(),address.getCountry(),address.getCity(),address.getDistrict());
+    public static AddressDTO adaptFrom(Address address) {
+        return new AddressDTO(address.getId(), address.getCountry(), address.getCity(), address.getDistrict());
+    }
+
+    public static Address adaptTo(AddressDTO addressDTO) {
+        return new Address(addressDTO.getCountry(), addressDTO.getCity(), addressDTO.getDistrict());
     }
 
 }
