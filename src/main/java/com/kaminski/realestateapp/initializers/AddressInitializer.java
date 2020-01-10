@@ -30,7 +30,6 @@ public class AddressInitializer {
 
             JSONArray addresses = (JSONArray) obj;
             List<Address> addressList = new ArrayList<>();
-            //Iterate over employee array
             addresses.forEach(address -> addressList.add(parseAddressObject((JSONObject) address)));
             if (addressRepo.findAll().size() < addressList.size()) {
                 addressRepo.deleteAll();

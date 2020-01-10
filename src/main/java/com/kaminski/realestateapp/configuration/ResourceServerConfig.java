@@ -45,7 +45,5 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/**")
                 .authenticated()
                 .antMatchers("/api/oauth/**").permitAll();
-
     }
-
 }

@@ -21,7 +21,7 @@ public class AddressREST {
     private AddressService addressService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<AddressDTO> getAnnouncementById(@PathVariable Long id) {
+    public ResponseEntity<AddressDTO> getAddressById(@PathVariable Long id) {
         Optional<Address> address = addressService.findAddressById(id);
         if (address.isPresent()) {
             return ResponseEntity.ok().body(AddressDTO.adaptFrom(address.get()));
@@ -31,7 +31,7 @@ public class AddressREST {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<AddressDTO>> getAnnouncements() {
+    public ResponseEntity<List<AddressDTO>> getAddresses() {
         List<Address> addresses = addressService.getAddresses();
         List<AddressDTO> addressDTOS = addresses.stream().map(AddressDTO::adaptFrom).collect(Collectors.toList());
         return ResponseEntity.ok().body(addressDTOS);

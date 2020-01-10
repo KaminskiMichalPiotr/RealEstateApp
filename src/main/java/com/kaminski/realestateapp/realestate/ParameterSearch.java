@@ -21,5 +21,4 @@ public class ParameterSearch {
     private Long minPricePerM;
     private Long maxPricePerM;
     private String district;
-
 }

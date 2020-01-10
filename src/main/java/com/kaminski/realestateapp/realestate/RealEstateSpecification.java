@@ -18,7 +18,6 @@ public class RealEstateSpecification implements Specification<RealEstate> {
     @Override
     public Predicate toPredicate(Root<RealEstate> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
 
-        Path<Long> id = root.get(RealEstate_.id);
         Path<Long> area = root.get(RealEstate_.area);
         Path<Long> price = root.get(RealEstate_.price);
         Path<Long> pricePerSquareMeter = root.get(RealEstate_.pricePerSquareMeter);
@@ -53,7 +52,6 @@ public class RealEstateSpecification implements Specification<RealEstate> {
             predicates.add(cb.equal(realEstateType, RealEstateType.valueOf(criteria.getRealEstateType())));
         }
         return cb.and(predicates.toArray(new Predicate[predicates.size()]));
-
     }
 
 }

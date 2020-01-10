@@ -23,8 +23,7 @@ import java.util.stream.StreamSupport;
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.kaminski.realestateapp")
 @PropertySources({
-        @PropertySource(value = "data.properties"),
-        @PropertySource(value = "file:connection.properties", ignoreResourceNotFound = true)
+        @PropertySource(value = "classpath:/application.properties"),
 })
 @ComponentScan(basePackages = "com.kaminski.realestateapp")
 public class DataConfig {
